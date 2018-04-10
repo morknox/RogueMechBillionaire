@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Passive {
+    Unit unit;
 
-
-    Passive()
+    Passive(Unit unit)
     {
+        this.unit = unit;
     }
 
     ~Passive()

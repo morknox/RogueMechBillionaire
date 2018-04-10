@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Special {
+    Unit unit;
 
-    Special(){
+    public Special(Unit unit)
+    {
+        this.unit = unit;
     }
 
     ~Special(){
 
     }
 
-    public void Update()
+    public virtual void Update()
     {
 
     }
 
-    public void Activate()
+    public virtual void Activate()
     {
 
     }

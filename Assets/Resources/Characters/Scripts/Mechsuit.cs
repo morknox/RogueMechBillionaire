@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mechsuit {
-
-    List<Weapon> weapons = new List<Weapon>();
+    Unit unit;
+    Weapon[] weapons = new Weapon[2];
     List<Passive> passives = new List<Passive>();
     // List<Special> specials = new List<Special>(); // ? or 1
     Special special;
-    Mechsuit(){
+
+    public Mechsuit(Unit unit){
+        this.unit = unit;
+
+        //TEMP
+        weapons[0] = new Weapon(unit, unit.body.Find("upperArmLeft").Find("underArmLeft").Find("barrel"));
+        weapons[1] = new Weapon(unit, unit.body.Find("upperArmRight").Find("underArmRight").Find("barrel"));
+        special = new Special(unit);
     }
 
     ~Mechsuit() {
     }
 
-    public void Update()
+    void Equip(Weapon weapon, int index){
+        //drop weapon[index]
+        weapons[index] = weapon;
+
+    }   
+
+    public virtual void Update()
     {
         foreach (Weapon w in weapons)
         {
@@ -27,13 +40,12 @@ public class Mechsuit {
         special.Update();
     }
 
-    public void Fire(int index)
+    public virtual void Fire(int index)
     {
-
         weapons[index].Fire();
     }
 
-    public void FireALL()
+    public virtual void FireAll()
     {
         foreach (Weapon w in weapons)
         {
@@ -41,7 +53,7 @@ public class Mechsuit {
         }
     }
 
-    public void Special()
+    public virtual void Special()
     {
         special.Activate();
     }
